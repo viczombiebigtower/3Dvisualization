@@ -1,0 +1,8 @@
+Visual Studio 2022:
+双击3Dvisualization.sln文件，Ctrl+F5运行即可
+Win bash:
+检查windows环境变量中是否有C++编译器MinGW-w64，如果没有：
+下载gcc编译器的windows版本MinGW-w64，下载地址：
+https://winlibs.com/?source=post_page-----86b862e59b07--------------------------------#download-release
+选win64版本的gcc，解压下载包后将bin文件夹的路径添加至windows环境变量。（点击此电脑-属性-高级系统设置-环境变量-系统变量-Path变量）
+在程序的主文件夹中双击build.bat即可编译并运行程序（如果不能运行，可以在环境变量-用户变量中创建用户变量，变量名%path%，变量值为C:/windows/system32，再选中系统变量-Path-编辑，添加%path%）

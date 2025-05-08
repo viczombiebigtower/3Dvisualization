@@ -1,4 +1,4 @@
-#include "shader.h"
+#include "Shader.h"
 #include "GLerror.h"
 #include <iostream>
 #include <string>

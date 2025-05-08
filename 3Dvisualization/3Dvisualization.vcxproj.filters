@@ -21,9 +21,6 @@
     <ClCompile Include="src\vendor\stb_image\stb_image.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\GLFWevi.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="src\VertexBuffer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -36,7 +33,7 @@
     <ClCompile Include="src\Texture.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\shader.cpp">
+    <ClCompile Include="src\Shader.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\Renderer.cpp">
@@ -46,6 +43,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\GLerror.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Camera.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -482,10 +482,7 @@
     <ClInclude Include="src\Texture.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\shader.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GLFWevi.h">
+    <ClInclude Include="src\Shader.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="src\Renderer.h">
@@ -1362,6 +1359,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="src\vendor\glm\vector_relational.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Camera.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

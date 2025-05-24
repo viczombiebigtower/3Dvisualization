@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "3Dvisualization", "3Dvisualization\3Dvisualization.vcxproj", "{3D1114A1-A6B5-4F0F-934E-CC22F7ED1D41}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup1", "Setup1\Setup1.vdproj", "{F5D91FD6-F519-3AC5-2EF1-6ADD62B256F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +23,15 @@ Global
 		{3D1114A1-A6B5-4F0F-934E-CC22F7ED1D41}.Release|x64.Build.0 = Release|x64
 		{3D1114A1-A6B5-4F0F-934E-CC22F7ED1D41}.Release|x86.ActiveCfg = Release|Win32
 		{3D1114A1-A6B5-4F0F-934E-CC22F7ED1D41}.Release|x86.Build.0 = Release|Win32
+		{F5D91FD6-F519-3AC5-2EF1-6ADD62B256F6}.Debug|x64.ActiveCfg = Debug
+		{F5D91FD6-F519-3AC5-2EF1-6ADD62B256F6}.Debug|x86.ActiveCfg = Debug
+		{F5D91FD6-F519-3AC5-2EF1-6ADD62B256F6}.Release|x64.ActiveCfg = Release
+		{F5D91FD6-F519-3AC5-2EF1-6ADD62B256F6}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3099A13D-D411-4499-920D-02590EE05900}
 	EndGlobalSection
 EndGlobal

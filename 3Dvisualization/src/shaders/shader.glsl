@@ -32,6 +32,9 @@ void main()
 	vec2 v_TexPos1 = k * v_TexPos + vec2(- k / 2 + 0.5, -k / 2 + 0.5);
 	vec4 texColor = texture(u_Texture, v_TexPos);
 	vec4 texColor1 = texture(u_Texture1, v_TexPos1);
+
+	//FragColor = u_Color;
+
 	//make sufficiently black pixels transparent to expose the underlying texture
 	if(texColor1.r + texColor1.g + texColor.b < 0.6) texColor1.a = 0.0; 
 	if(texColor1.a != 0.0) FragColor = mix(texColor1, u_Color, 0.0);

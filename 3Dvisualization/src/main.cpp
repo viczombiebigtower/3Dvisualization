@@ -7,6 +7,7 @@
 #include <sstream>
 #include <vector>
 #include <cmath>
+#include <ctime>
 
 #include "GLerror.h"
 #include "Shader.h"
@@ -71,7 +72,7 @@ int main(void)
     glfwSetScrollCallback(window, scroll_callback);
 
     // tell GLFW to capture our mouse
-    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    //glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
     glfwSwapInterval(1);
 
@@ -91,30 +92,40 @@ int main(void)
 
     VertexArray vao;
 
-    VertexBuffer vbo(cubevertices, sizeof(cubevertices));
+    VertexBuffer vbo(cubeVertices, sizeof(cubeVertices));
+    IndexBuffer ibo(cubeIndices, sizeof(cubeIndices) / sizeof(cubeIndices[0]));
 
     VertexAttrib posvat = { 0, 3, GL_FLOAT, GL_FALSE }; // location, dim, type, normalized
     VertexAttrib texposvat = { 1, 2, GL_FLOAT, GL_FALSE };
     vector<VertexAttrib> vats = { posvat, texposvat };
     VertexAttribs vatso(vats);
 
-    IndexBuffer ibo(cubeindices, sizeof(cubeindices) / sizeof(cubeindices[0]));
+    VertexArray vao1;
 
+    VertexBuffer vbo1(regularSolidVertices, sizeof(regularSolidVertices));
+    IndexBuffer ibo1(regularSolidIndices, sizeof(regularSolidIndices) / sizeof(regularSolidIndices[0]));
+
+
+    vector<VertexAttrib> vats1 = { posvat, texposvat };
+    VertexAttribs vatso1(vats1);
 
     Shader shader("src/shaders/shader.glsl"); //the parameter is the path of glsl
-    shader.Bind();
 
     Texture texture("res/Carved_Pumpkin.png");
     Texture texture1("res/Diamond.png");
     texture.Bind();
     texture1.Bind(1);
+    shader.Bind();
     shader.SetUniform1i("u_Texture", 0);
     shader.SetUniform1i("u_Texture1", 1);
 
 
     vao.Unbind();
+    vao1.Unbind();
     vbo.Unbind();
+    vbo1.Unbind();
     ibo.Unbind();
+    ibo1.Unbind();
     shader.Unbind();
 
 
@@ -132,20 +143,32 @@ int main(void)
 
         // input
         // -----
+        if(glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
+            glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
         processInput(window);
         glClearColor(0.1f, 0.2f, 0.2f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        glm::mat4 proj = glm::perspective<float>(glm::radians(camera.m_Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.01f, 100.0f);
         glm::mat4 model = glm::translate(glm::identity<glm::mat4>(), glm::vec3(0.0f, 0.0f, 0.0f));
+        glm::mat4 model1 = glm::translate(glm::identity<glm::mat4>(), glm::vec3(2.0f + sin(currentFrame), 1.0f, -3.0f))
+            * glm::rotate(glm::identity<glm::mat4>(), glm::radians(50 * currentFrame), glm::vec3(1.0f, 1.0f, 1.0f));
+        glm::mat4 model2 = glm::translate(glm::identity<glm::mat4>(), glm::vec3(-3.0f, 4.0f, -1.0f));
         glm::mat4 view = camera.GetViewMatrix();
-       
+        glm::mat4 proj = glm::perspective<float>(glm::radians(camera.m_Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.01f, 100.0f);
+
         glm::mat4 mvp = proj * view * model;
+        glm::mat4 mvp1 = proj * view * model1;
+        glm::mat4 mvp2 = proj * view * model2;
+
         /* Render here */
         renderer.Clear();
         shader.Bind();
         shader.SetUniform4f("u_Color", 1.0f, 0.0f, 0.0f, 1.0f);
         shader.SetUniformMat4f("u_MVP", mvp);
+        renderer.Draw(vao, ibo, shader);
+        shader.SetUniformMat4f("u_MVP", mvp2);
+        renderer.Draw(vao1, ibo1, shader);
+        shader.SetUniformMat4f("u_MVP", mvp1);
         renderer.Draw(vao, ibo, shader);
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
